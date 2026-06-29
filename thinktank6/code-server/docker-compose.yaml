@@ -1,0 +1,14 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=${MY_UID}
+      - PGID=${MY_GID}
+      - TZ=America/Denver
+      - PASSWORD=${CODE_SERVER_PASSWORD} 
+    volumes:
+      - /home/csmcclain/homelab/thinktank6:/config/workspace
+    ports:
+      - 8443:8443
+    restart: unless-stopped
