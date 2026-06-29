@@ -1,0 +1,11 @@
+services:
+  traefik-kop:
+    image: ghcr.io/jittering/traefik-kop:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - REDIS_ADDR=192.168.0.5:6379
+      - REDIS_PASS=${REDIS_PASSWORD}
+      - BIND_IP=192.168.0.6
+      - KOP_HOSTNAME=thinktank7
