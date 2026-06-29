@@ -28,7 +28,7 @@ services:
       - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
       - "--certificatesresolvers.cloudflare.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json"
-      - "--ping=true"                    # enables the /ping health endpoint
+      - "--ping=true"
     ports:
       - "443:443"
     environment:
@@ -38,7 +38,7 @@ services:
       - "/home/csmcclain/data/traefik/letsencrypt:/letsencrypt"
     depends_on:
       redis:
-        condition: service_healthy    # waits for Redis to be healthy before starting
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "traefik", "healthcheck", "--ping"]
       interval: 10s
