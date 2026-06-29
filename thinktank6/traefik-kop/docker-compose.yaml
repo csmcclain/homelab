@@ -6,6 +6,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - REDIS_ADDR=192.168.0.5:6379
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PASS=${REDIS_PASSWORD}
       - BIND_IP=192.168.0.7
       - KOP_HOSTNAME=thinktank6
