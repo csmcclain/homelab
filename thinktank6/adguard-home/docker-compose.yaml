@@ -1,0 +1,19 @@
+services:
+  adguardhome:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "3000:3000/tcp"
+      - "8000:80/tcp"
+    volumes:
+      - /home/csmcclain/data/adguard-home/work:/opt/adguardhome/work
+      - /home/csmcclain/data/adguard-home/conf:/opt/adguardhome/conf
+    healthcheck:
+      test: ["CMD", "nslookup", "healthcheck.adguardhome.test", "127.0.0.1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
