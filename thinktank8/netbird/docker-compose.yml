@@ -39,7 +39,7 @@ services:
       - '80:80'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/csmcclain/data/netbird/traefik-letsencrypt:/letsencrypt
+      - netbird_traefik_letsencrypt:/letsencrypt
       - ./traefik-dynamic.yaml:/etc/traefik/dynamic.yaml:ro
     logging:
       driver: "json-file"
@@ -79,7 +79,7 @@ services:
     ports:
       - '3478:3478/udp'
     volumes:
-      - /home/csmcclain/data/netbird/data:/var/lib/netbird
+      - netbird_data:/var/lib/netbird
       - ./config.yaml:/etc/netbird/config.yaml
     command: ["--config", "/etc/netbird/config.yaml"]
     labels:
@@ -122,7 +122,7 @@ services:
     env_file:
       - ./proxy.env
     volumes:
-      - /home/csmcclain/data/netbird/proxy-certs:/certs
+      - netbird_proxy_certs:/certs
     labels:
       # TCP passthrough for any unmatched domain (proxy handles its own TLS)
       - traefik.enable=true
@@ -138,6 +138,11 @@ services:
       options:
         max-size: "500m"
         max-file: "2"
+
+volumes:
+  netbird_data:
+  netbird_traefik_letsencrypt:
+  netbird_proxy_certs:
 
 networks:
   netbird:

@@ -11,11 +11,12 @@ server:
   logLevel: "info"
   logFile: "console"
 
-  authSecret: "YJ4WXWuhJ1Blp0Z31Gx3qgWZ/HmsoF/4DcrbAo+1QmE"
+  authSecret: "XhJkYIv5CeR6HFJoUnS4mrBD3GDEOajtogAznn9jK7k"
   dataDir: "/var/lib/netbird"
 
   auth:
     issuer: "https://netbird.csmcclain.com/oauth2"
+    localAuthDisabled: true
     signKeyRefreshEnabled: true
     dashboardRedirectURIs:
       - "https://netbird.csmcclain.com/nb-auth"
@@ -29,4 +30,4 @@ server:
 
   store:
     engine: "sqlite"
-    encryptionKey: "5bQRzlZHE7nPw+8DCUtC7FzNTYuCHtAZ9vVCPT7+UUY="
+    encryptionKey: "4KxiGyyxspVMj4+X6gdOBbq8Ntc38IkcHDGVLcTWYN8="
