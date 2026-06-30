@@ -1,0 +1,26 @@
+services:
+  netbird:
+    image: netbirdio/netbird:latest
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    environment:
+      - NB_SETUP_KEY=${NB_SETUP_KEY}
+      - NB_MANAGEMENT_URL=https://netbird.csmcclain.com
+      - NB_HOSTNAME=thinktank7-proxy
+    volumes:
+      - /home/csmcclain/data/netbird-proxy:/etc/netbird
+    networks:
+      shared-net:
+        ipv4_address: 172.28.0.10
+
+networks:
+  shared-net:
+    name: netbird-proxy-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/24
+          gateway: 172.28.0.1
